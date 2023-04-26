@@ -8,6 +8,15 @@ description: Styles for HTML Pages
 * {box-sizing: border-box;}
 /* Styles for navigation pane*/
 
+nav {
+	text-align: center;
+}
+
+nav ul {
+	text-align: center;
+}
+
+
 nav ul li{
     
     display: inline-block;
@@ -29,7 +38,7 @@ nav a:hover{
 
 /* Styles for artical*/
 article {
-	max-width: 1400px;margin: 0 auto;
+	max-width: 80%;margin: 0 auto;
 }
 
 /* Styles for  body*/
@@ -78,6 +87,16 @@ header h1 {
 	
 }
 
+
+#footer1 {
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
 
 
 /* Styles for job positions page*/

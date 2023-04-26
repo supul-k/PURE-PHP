@@ -3,6 +3,6 @@
         <a href="mailto:104336644@student.swin.edu.au">Send Email</a>
     </p>
 </footer>
-</body>
+</article>
 
 </html>
