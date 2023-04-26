@@ -1,0 +1,49 @@
+/*
+filename: Sithumini Sandarekha Amarawansha Gamage
+author: Sithumini Sandarekha Amarawansha Gamage
+created: 01/03/2023
+last modified: 27/03/2023
+description: apply.html
+*/
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+input[type=email], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color:#3498DB;
+  color: white;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+input[type=reset] {
+  background-color:#3498DB;
+  color: white;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {background-color: #DE3163;}
+input[type=reset]:hover {background-color: #DE3163;}
+/*The following styles used for products page*/
+
+
