@@ -40,3 +40,21 @@ input[type=reset]:hover {background-color: #DE3163;}
 /*The following styles used for products page*/
 
 
+.success-message {
+  background-color: #dff0d8;
+  border: 1px solid #d6e9c6;
+  color: #3c763d;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+.error-message {
+  background-color: #dff0d8;
+  border: 1px solid #d6e9c6;
+  color: #d8290a;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+
+

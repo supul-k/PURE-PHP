@@ -29,3 +29,21 @@ nav ul li a.active {
   border: 1px solid red;
   overflow: hidden;
 }
+
+
+/* manage.php table decorations */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}

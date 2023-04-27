@@ -15,6 +15,9 @@ include '/var/www/html/assign2/header.inc';
           <a href="apply.php">Job Application</a>
         </li>
         <li>
+          <a href="manage.php">Manage</a>
+        </li>
+        <li>
           <a href="about.php">About Me</a>
         </li>
         <li>
