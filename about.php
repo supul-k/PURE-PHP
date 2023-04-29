@@ -1,21 +1,17 @@
 <?php
-include '/var/www/html/assign2/menu.inc';
+include './menu.inc';
 ?>
 
 <div>
     <h1 id="heading1">About me</h1>
+    <div class="sectionWrapper">
     <section id="myphoto">
         <h2 id="myprofile">Profile</h2>
         <figure id="figure_myphoto">
             <img src="images/my.jpg" alt="m-photo" width="300" height="300">
         </figure>
     </section>
-    <section id="resume">
-        <h2 id="myprofle">My Resume</h2>
-        <figure id="figure_myresume">
-            <img src="images/resume.jpg" width="500" height="700" alt="resume">
-        </figure>
-    </section>
+    
     <section id="mydata">
         <dl>
             <dt><b>Name :</b></dt>
@@ -67,12 +63,16 @@ include '/var/www/html/assign2/menu.inc';
             <dd><br></dd>
         </dl>
     </section>
+    <section id="resume">
+    <h2 id="myprofile">My Resume</h2>
+        <figure id="figure_myresume">
+            <img src="images/resume.jpg" width="800px" height="auto" alt="resume">
+        </figure>
+    </section>
     <section id="tables">
-        <h2 id="table">Swinburne Timetable</h2>&lt; &lt;
+        <h2 id="table">Swinburne Timetable</h2>
         <table>
-            <caption>
-                Timetable
-            </caption>
+           
             <thead>
                 <tr>
                     <th></th>
@@ -278,4 +278,6 @@ include '/var/www/html/assign2/menu.inc';
             </tbody>
         </table>
     </section>
+    </div>
+    
 </div>
