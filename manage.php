@@ -1,7 +1,7 @@
 <?php
 include './menu.inc';
 require_once 'settings.php';
-session_start(); 
+session_start();
 
 if (isset($_SESSION['success_message'])) {
     // Display success message and unset the session variable
@@ -12,7 +12,7 @@ if (isset($_SESSION['success_message'])) {
 if (isset($_SESSION['error_message'])) {
     // Display success message and unset the session variable
     // foreach ($_SESSION['error_messages'] as $error_message) {
-        echo '<div class="error-message">' . $_SESSION['error_message'] . '</div>';
+    echo '<div class="error-message">' . $_SESSION['error_message'] . '</div>';
     // }
     unset($_SESSION['error_message']);
 }
@@ -21,6 +21,40 @@ if (isset($_SESSION['error_message'])) {
 ?>
 
 <body>
+    <div style="max-width: 400px; ">
+        <form method="post" style="padding: 10px; text-align: center;" action="processEOI.php">
+            <div>
+                <div>
+
+                    <label for="reference">Reference Number:</label>
+                    <input style="padding: left 20px;" type="text" id="reference" name="reference">
+                </div>
+
+
+            </div>
+
+            <div>
+                <div>
+                    <label for="change_status">Change Status of the application:</label>
+                    <select id="change_status" name="change_status">
+                        <option value="New">New</option>
+                        <option value="Current">Current</option>
+                        <option value="Final">Final</option>
+                    </select>
+                </div>
+
+
+            </div>
+            <div id="buttons" style="padding: 10px;">
+                <div style="text-align: center; padding-bottom: 10px;">
+                    <button type="submit" value="delete_record" id="reference_btn" name="submit_delete_record">Delete</button>
+                </div>
+                <div style="text-align: center;">
+                    <button type="submit" value="change_status" id="change_status_btn" name="submit_change_status">Change Status</button>
+                </div>
+            </div>
+        </form>
+    </div>
     <table id="table">
         <tr>
             <th>EOInumber</th>
@@ -36,6 +70,7 @@ if (isset($_SESSION['error_message'])) {
             <th>email</th>
             <th>phone</th>
             <th>other_skills</th>
+            <th>status</th>
         </tr>
         <?php
 
@@ -61,6 +96,7 @@ if (isset($_SESSION['error_message'])) {
             echo '<td>' . $row['email'] . '</td>';
             echo '<td>' . $row['phone'] . '</td>';
             echo '<td>' . $row['other_skills'] . '</td>';
+            echo '<td>' . $row['status'] . '</td>';
             echo '</tr>';
         }
 
@@ -70,17 +106,7 @@ if (isset($_SESSION['error_message'])) {
         ?>
 
     </table>
-    </br>
-    <form method="post" style="display: flex;  padding: 10px; justify-content: center;" action="processManage.php">
-        <div >
-            <label for="eoinumber">Reference Number:</label>
-            <input style="padding: left 20px;" type="text" id="eoinumber" name="reference">
-        </div>
-        <div style="text-align: center;">
-            <button  type="submit">Delete</button>
-        </div>
 
-    </form>
 </body>
 
 <?php

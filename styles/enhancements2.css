@@ -47,3 +47,17 @@ th {
   background-color: #4CAF50;
   color: white;
 }
+
+#reference_btn {
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+#change_status_btn {
+  background-color: #1ecbd1;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+}

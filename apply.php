@@ -2,34 +2,34 @@
 include './menu.inc';
 ?>
 
-<?php
-session_start();
-if (isset($_SESSION['success_message'])) {
-    // Display success message and unset the session variable
-    echo '<div class="success-message">' . $_SESSION['success_message'] . '</div>';
-    unset($_SESSION['success_message']);
-}
-
-if (isset($_SESSION['error_message'])) {
-    // Display success message and unset the session variable
-    // foreach ($_SESSION['error_messages'] as $error_message) {
-        echo '<div class="error-message">' . $_SESSION['error_message'] . '</div>';
-    // }
-    unset($_SESSION['error_message']);
-}
-?>
-
 <body>
     <article>
         <div>
             <h1 id="heading1">Jobs Application</h1>
+            <?php
+            session_start();
+            if (isset($_SESSION['success_message'])) {
+                // Display success message and unset the session variable
+                echo '<div class="success-message">' . $_SESSION['success_message'] . '</div>';
+                unset($_SESSION['success_message']);
+            }
+
+            if (isset($_SESSION['error_message'])) {
+                // Display success message and unset the session variable
+                // foreach ($_SESSION['error_messages'] as $error_message) {
+                echo '<div class="error-message">' . $_SESSION['error_message'] . '</div>';
+                // }
+                unset($_SESSION['error_message']);
+            }
+            ?>
             <p>You have <span id="timer">10:00</span> to complete the application.</p>
 
             <div class="container">
                 <form id="regform" method="POST" action="processEOI.php" novalidate="novalidate">
                     <div id="refNumber">
                         <label for="job-ref">Job Reference Number:</label>
-                        <input type="text" id="refNum" name="refNum" readonly>
+                        <span id="fnameError" class="error"></span>
+                        <input type="text" id="refNumber" name="refNumber" placeholder="reference number">
                     </div>
                     <!-- <label for="refno">Job Reference No</label> <input type="text" id="refno" name="jobreferenceno" minlength="5" maxlength="5" size="5"  placeholder="Reference Number">  -->
                     <div id="firstname">
@@ -107,7 +107,7 @@ if (isset($_SESSION['error_message'])) {
 
                     <fieldset>
                         <legend>Skills</legend> <span id="skillError" class="error"></span> <br>
-                        <label for="skill1">HTML/CSS</label> 
+                        <label for="skill1">HTML/CSS</label>
                         <input type="checkbox" name="skill1" id="skill1" value="HTML/CSS" required="required"> <label for="skill2">JavaScript</label> <input type="checkbox" name="skill2" id="skill2" value="JavaScript"> <label for="skill3">Python</label> <input type="checkbox" name="skill3" id="skill3" value="Python"> <label for="skill4">Programming Java</label> <input type="checkbox" name="skill4" id="skill4" value="Programming Java "> <label for="skill5">Programming C+</label> <input type="checkbox" name="skill5" id="skill5" value="Programming C+"> <label for="skill6">SQL</label> <input type="checkbox" name="skill6" id="skill6" value="SQL"> <label for="skill7">MongoDB</label> <input type="checkbox" name="skill7" id="skill7" value="MongoDB"> <label for="skill7">Other skills</label> <input type="checkbox" name="otherskills" id="otherskills" value="Other">
                     </fieldset>
 
@@ -118,7 +118,7 @@ if (isset($_SESSION['error_message'])) {
                         <textarea id="otherskillstext" name="otherskills" placeholder="Write here your other skills" style="height:200px"></textarea>
 
                     </fieldset>
-                    <input type="submit" value="Submit" id="submit"> <input type="reset" value="Reset Form">
+                    <input type="submit" value="submit" id="submit" name="submit_eoi_form"> <input type="reset" value="Reset Form">
                 </form>
             </div>
         </div>
