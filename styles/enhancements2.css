@@ -1,6 +1,10 @@
 
 .imageSlider{
-
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	
+	align-items: center;
 }
 .navRadio{
 	display: flex;
@@ -41,15 +45,37 @@
 	  }
 	  
 	  .img-box {
+		
 		width: 800px;
 		height: 280px;
-		margin: 20px auto;
+		margin: 20px 20px;
+		
 		position: relative;
 		overflow: hidden;
 		border-radius: 10px;
 		
 		border: 2px solid  #1A237E;
 	  }
+
+
+	  @media screen and (max-width: 768px) {
+		.img-box {
+
+			width: 80%;
+			height: 280px;
+			margin: 20px 20px;
+		  
+		}
+	  }
+	  @media screen and (max-width: 480px) {
+		.img-box {
+
+		  width: 80%;
+		  height: 280px;
+		  margin: 10px 10px;
+		
+	  }
+	}
 	  
 	  
 	  #one, #two, #three {
@@ -75,12 +101,7 @@
 	  }
 	  
 
-.navRadio ul li a.active {
-  color: black;
-  background-color: #505588ec;
-  font-weight: bold;
-  border-radius: 5px;
-}
+
 .container {
   position: relative;
   width: 100%;
@@ -127,3 +148,11 @@ th {
   padding: 10px 20px;
   border-radius: 5px;
 }
+nav li a.active,
+nav li a:active{
+	color: black;
+	background-color: #505588ec;
+	font-weight: bold;
+	border-radius: 5px;
+	transition: 0.2s; /* add transition effect to the hover state */
+  }

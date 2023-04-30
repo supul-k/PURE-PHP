@@ -63,14 +63,16 @@ include './menu.inc';
             <dd><br></dd>
         </dl>
     </section>
-    <section id="resume">
     <h2 id="myprofile">My Resume</h2>
+    <section id="resume">
+    
         <figure id="figure_myresume">
-            <img src="images/resume.jpg" width="800px" height="auto" alt="resume">
+            <img src="images/resume.jpg"  alt="resume">
         </figure>
     </section>
+    <h2 id="table">Swinburne Timetable</h2>
     <section id="tables">
-        <h2 id="table">Swinburne Timetable</h2>
+        
         <table>
            
             <thead>
@@ -281,3 +283,6 @@ include './menu.inc';
     </div>
     
 </div>
+<?php
+include './footer.inc';
+?>
