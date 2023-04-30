@@ -12,7 +12,7 @@ include './menu.inc';
                         <li>
                             <a href="index.php">Apply slide show to the home page</a>
                         </li>
-                        <p>In this example, the JavaScript code defines a `slideIndex` variable to keep track of the current slide, and a `slides` variable to get all the `img` elements inside the `slideshow` div. The `showSlides()` function hides all the slides by setting their `display` property to "none", increments the `slideIndex` variable, and shows the current slide by setting its `display` property to "block". The function then calls itself using `setTimeout()` to change the slide every 3 seconds.
+                        <p>In this example, The  JavaScript code change the image slider by setting a timer to change images every 4 seconds using setInterval(). It also allows manual control of the slider with radio buttons by adding event listeners. The showNextSlide() function gets the next slide index by incrementing the current slide index and then uses the opacity CSS property to hide the current slide and show the next slide. The function also updates the checked state of the radio button corresponding to the next slide. The startImageSlider() function gets the images and radio buttons, sets the current slide index, and calls showNextSlide() to display the first slide.
                         </p>
                     </ul>
                 </li>
