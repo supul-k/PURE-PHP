@@ -22,6 +22,8 @@
 		  display: inline-block;
 		transition: background-color .4s;
 	  }
+
+	  .trackRadio{display: none;}
 	  
 	  .radio:hover {
 		background-color: #4450db;
