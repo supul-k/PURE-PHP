@@ -122,3 +122,10 @@ th {
   padding: 10px 20px;
   border-radius: 5px;
 }
+
+#show_all {
+	background-color: #d8d514;
+	color: #fff;
+	padding: 10px 20px;
+	border-radius: 5px;
+  }
