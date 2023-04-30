@@ -2,6 +2,11 @@
 .imageSlider{
 
 }
+.navRadio{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10px;}
 
 	
 	  .radio {
@@ -62,15 +67,15 @@
 		
 	  }
 	  
-	  #img-1:checked ~ .nav label #dot-1.radio,
-	  #img-2:checked ~ .nav label #dot-2.radio,
-	  #img-3:checked ~ .nav label #dot-3.radio {
+	  #img-1:checked ~ .navRadio label #dot-1.radio,
+	  #img-2:checked ~ .navRadio label #dot-2.radio,
+	  #img-3:checked ~ .navRadio label #dot-3.radio {
 		color: #FFF;
 		background-color: #1A237E;
 	  }
 	  
 
-nav ul li a.active {
+.navRadio ul li a.active {
   color: black;
   background-color: #505588ec;
   font-weight: bold;

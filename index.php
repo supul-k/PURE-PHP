@@ -28,7 +28,7 @@ include './menu.inc';
       <img id="two" src="./images/image2.jpg">
       <img id="one" src="./images/image3.jpg">
     </div>
-    <div class="nav">
+    <div class="navRadio">
       <label for="img-1">
         <div id="dot-1" class="radio"></div>
       </label>
