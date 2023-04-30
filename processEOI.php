@@ -3,9 +3,6 @@
 // Include settings.php to access database connection settings
 session_start();
 
-
-echo ('hi');
-
 if (isset($_POST['submit_eoi_form'])) {
     eoi_form_submission();
 }
@@ -18,6 +15,13 @@ if (isset($_POST['submit_change_status'])) {
     submit_change_status();
 }
 
+if (isset($_POST['register'])) {
+    register();
+}
+
+if (isset($_POST['login'])) {
+    login();
+}
 // if (isset($_POST['search_record'])) {
 //     search_record();
 // }
@@ -110,10 +114,11 @@ function eoi_form_submission()
 
         // Check if the table already exists
 
-        $query = "SELECT * FROM 'eoi' LIMIT 1";
+        $query = "SHOW TABLES LIKE 'eoi'";
         $result = mysqli_query($conn, $query);
+        $tableExists = mysqli_num_rows($result) > 0;
 
-        if (!$result) {
+        if (!$tableExists) {
             // Table does not exist, create it
             $sql = "CREATE TABLE eoi (
             EOInumber int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -255,10 +260,10 @@ function submit_change_status()
 //     session_start();
 
 
-    // if (isset($_POST['firstname']) && isset($_POST['lastname'])) {
+// if (isset($_POST['firstname']) && isset($_POST['lastname'])) {
 
-    //     $firstname = $_POST['firstname'];
-    //     $lastname = $_POST['lastname'];
+//     $firstname = $_POST['firstname'];
+//     $lastname = $_POST['lastname'];
 
 //         // Construct the SQL query to delete the record based on the EOInumber
 //         $sql = "SELECT * FROM `eoi` WHERE `first_name` = '$firstname' AND `last_name` = '$lastname';";
@@ -280,3 +285,102 @@ function submit_change_status()
 //         exit();
 //     }
 // }
+
+function register()
+{
+
+    require_once 'settings.php';
+    session_start();
+
+    // Check if the form was submitted
+    $query = "SHOW TABLES LIKE 'registration'";
+    $result = mysqli_query($conn, $query);
+    $tableExists = mysqli_num_rows($result) > 0;
+
+    if (!$tableExists) {
+        $sql = "CREATE TABLE registration (
+            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(30) NOT NULL,
+            email VARCHAR(50) NOT NULL,
+            password VARCHAR(30) NOT NULL
+        )";
+    }
+
+    if (mysqli_query($conn, $sql)) {
+        echo "Table registration created successfully";
+    } else {
+        echo "Error creating table: " . mysqli_error($conn);
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name = $_POST["email_register"];
+        $email = $_POST["username_register"];
+        $password = $_POST["password"];
+        $confirmPassword = $_POST['confirm-password'];
+
+        // Validate form data
+        if ($password !== $confirmPassword) {
+            $_SESSION['error_message'] = 'Passwords do not match. Please try again.';
+
+            header('Location: registration.php');
+            exit();
+        }
+
+
+        $sql = "INSERT INTO registration (name, email, password)
+                VALUES ('$name', '$email', '$password')";
+
+        if (mysqli_query($conn, $sql)) {
+            echo "Registration successful";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+    }
+
+    mysqli_close($conn);
+
+    if (mysqli_query($conn, $sql)) {
+        // Set session variable with success message
+        $_SESSION['success_message'] = 'User Registered successfully';
+    } else {
+        // Set session variable with success message
+        $_SESSION['error_message'] = 'Error Occured while Register';
+    }
+
+    header('Location: login.php');
+}
+
+function login()
+{
+
+    require_once 'settings.php';
+    session_start();
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Retrieve the submitted email and password
+        $email = $_POST['email_login'];
+        $password = $_POST['password_login'];
+    
+        // Construct a query to find the user with the specified email and password
+        $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
+    
+        // Execute the query
+        $result = mysqli_query($conn, $sql);
+    
+        // Check if the query returned a row
+        if (mysqli_num_rows($result) == 1) {
+            // Authentication succeeded, start a new session and redirect to the dashboard
+            session_regenerate_id();
+            $_SESSION['loggedin'] = TRUE;
+            $_SESSION['email'] = $email;
+            header('Location: manage.php');
+            exit();
+        } else {
+            // Authentication failed, display an error message
+            $_SESSION['error_message'] = 'User Registered successfully';
+        }
+    }
+
+
+    header('Location: login.php');
+}
