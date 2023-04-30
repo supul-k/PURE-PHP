@@ -18,6 +18,10 @@ if (isset($_POST['submit_change_status'])) {
     submit_change_status();
 }
 
+// if (isset($_POST['search_record'])) {
+//     search_record();
+// }
+
 
 
 
@@ -243,3 +247,36 @@ function submit_change_status()
         exit();
     }
 }
+
+// function search_record()
+// {
+
+//     require_once 'settings.php';
+//     session_start();
+
+
+    // if (isset($_POST['firstname']) && isset($_POST['lastname'])) {
+
+    //     $firstname = $_POST['firstname'];
+    //     $lastname = $_POST['lastname'];
+
+//         // Construct the SQL query to delete the record based on the EOInumber
+//         $sql = "SELECT * FROM `eoi` WHERE `first_name` = '$firstname' AND `last_name` = '$lastname';";
+
+//         // Execute the SQL query
+//         mysqli_query($conn, $sql);
+
+
+//         if (mysqli_query($conn, $sql)) {
+//             // Set session variable with success message
+//             $_SESSION['success_message'] = 'Status Updated successfully';
+//         } else {
+//             // Set session variable with success message
+//             $_SESSION['error_message'] = 'Error Occured while updating status';
+//         }
+
+//         // Redirect the user to another page
+//         header("Location: manage.php");
+//         exit();
+//     }
+// }
