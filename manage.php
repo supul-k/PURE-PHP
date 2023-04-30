@@ -1,5 +1,5 @@
 <?php
-include '/var/www/html/assign2/menu.inc';
+include './menu.inc';
 require_once 'settings.php';
 session_start();
 

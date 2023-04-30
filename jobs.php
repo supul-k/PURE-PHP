@@ -1,10 +1,11 @@
 <?php
-include '/var/www/html/assign2/menu.inc';
+include './menu.inc';
 ?>
 
 <div id="container-jobs">
 
     <h1 id="heading1">Job Positions</h1>
+    <div class="job_position_container">
     <div class="job_positions">
         <h2 class="position">Game Developer</h2>
         <h3 id="refNumber">Ref:011AA</h3>
@@ -12,9 +13,11 @@ include '/var/www/html/assign2/menu.inc';
         <figure class="figure3">
             <img src="images/man.jpg" alt="s-icon" width="70" height="70">
         </figure>
+        <hr color="black" size="1px"/>
         <ul class="jobdetails">
+        
 
-            <a href="apply.html?refNumber=011AA">Apply Now</a>
+            <a href="./apply.php">Apply Now</a>
             <li><b>Description :</b><br>
                 We are seeking a highly motivated and experienced Game Developer to join our team.<br>
                 The Game Developer will be responsible for designing, developing, and implementing high-quality games for various platforms such as mobile, PC, and console.<br>
@@ -49,7 +52,7 @@ include '/var/www/html/assign2/menu.inc';
         </ul>
         <!-- <a href="apply.html?refNumber=JOB001">Apply</a> -->
 
-        <h4 class="closingdate">Closing Date : 14 th of April 2023</h4>
+        <h4 class="closingdate">Closing Date : 14 <sup>th</sup> of April 2023</h4>
     </div>
 
 
@@ -59,8 +62,9 @@ include '/var/www/html/assign2/menu.inc';
         <figure class="figure3">
             <img src="images/man.jpg" alt="s-icon" width="70" height="70">
         </figure>
+        <hr color="black" size="1px"/>
         <ul class="jobdetails">
-            <a href="apply.html?refNumber=012BB">Apply Now</a>
+            <a href="./apply.php">Apply Now</a>
             <li><b>Description :</b><br>
                 We are seeking a highly motivated and experienced Cyber Security Analyst to join our team.<br>
                 The ideal candidate should have a strong background in cyber security and information security, with experience in network security, risk management, and incident response.<br>
@@ -95,7 +99,7 @@ include '/var/www/html/assign2/menu.inc';
         </ul>
 
 
-        <h4 class="closingdate">Closing Date : 29 th of May 2023</h4>
+        <h4 class="closingdate">Closing Date : 29 <sup>th</sup> of May 2023</h4>
     </div>
     <div class="job_positions">
         <h2 class="position">Software Engineer</h2>
@@ -103,8 +107,9 @@ include '/var/www/html/assign2/menu.inc';
         <figure class="figure3">
             <img src="images/man.jpg" alt="s-icon" width="70" height="70">
         </figure>
+        <hr color="black" size="1px"/>
         <ul class="jobdetails">
-            <a href="apply.html?refNumber=013CC">Apply Now</a>
+            <a href="./apply.php">Apply Now</a>
             <li><b>Description :</b><br>
                 As a game developer, you'll be responsible for bringing video games to life through programming, game design, and collaboration with a team of artists and designers.<br>
                 You'll need to have strong coding skills, experience with game engines, and a passion for gaming. Salaries for game developers can vary depending on your location, level of experience, and the specific company you work for</li>
@@ -137,7 +142,7 @@ include '/var/www/html/assign2/menu.inc';
             </li>
         </ul>
 
-        <h4 class="closingdate">Closing Date : 15th of May 2023</h4>
+        <h4 class="closingdate">Closing Date : 15 <sup>th</sup> of May 2023</h4>
     </div>
     <div class="job_positions">
         <h2 class="position">Cluod Engineer</h2>
@@ -145,8 +150,9 @@ include '/var/www/html/assign2/menu.inc';
         <figure class="figure3">
             <img src="images/man.jpg" alt="s-icon" width="70" height="70">
         </figure>
+        <hr color="black" size="1px"/>
         <ul class="jobdetails">
-            <a href="apply.html?refNumber=014DD">Apply Now</a>
+            <a href="./apply.php">Apply Now</a>
             <li><b>Description :</b><br>
                 We are seeking a highly motivated and experienced Cloud Engineer to join our team.<br>
                 The Cloud Engineer will be responsible for designing, deploying, and maintaining cloud-based infrastructure using technologies such as AWS, Azure, or Google Cloud Platform.<br>
@@ -180,8 +186,11 @@ include '/var/www/html/assign2/menu.inc';
             </li>
         </ul>
 
-        <h4 class="closingdate">Closing Date :29 th of April 2023</h4>
+        <h4 class="closingdate">Closing Date :29 <sup>th</sup> of April 2023</h4>
     </div>
+
+    </div>
+  
     <aside>
         <h3 id="a_color">Why You choose us? ?</h3>
         <p><b>Company Overview:</b><br>

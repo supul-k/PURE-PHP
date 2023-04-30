@@ -1,5 +1,5 @@
 <?php
-include '/var/www/html/assign2/menu.inc';
+include './menu.inc';
 ?>
 
 <body>
@@ -10,7 +10,7 @@ include '/var/www/html/assign2/menu.inc';
                 <li>Enhancement 1 :
                     <ul>
                         <li>
-                            <a href="apply.html">Enhancement in Job application page</a>
+                            <a href="apply.php">Enhancement in Job application page</a>
                         </li>
                         <p>The field-set technique alone is not sufficient for creating a full-width form, so I opted to use attribute selectors instead. By selecting elements with text, email, submit, and reset types using attribute selectors, I was able to create a full-width form using these techniques.</p>
                     </ul>
@@ -18,7 +18,7 @@ include '/var/www/html/assign2/menu.inc';
                 <li>Enhancement 2 :
                     <ul>
                         <li>
-                            <a href="jobs.html">Enhancemet in Jobs page</a>
+                            <a href="jobs.php">Enhancemet in Jobs page</a>
                         </li>
                         <p>I applied the image under job position</p>
                     </ul>
@@ -31,5 +31,5 @@ include '/var/www/html/assign2/menu.inc';
 
 
 <?php
-include '/var/www/html/assign2/footer.inc';
+include './footer.inc';
 ?>

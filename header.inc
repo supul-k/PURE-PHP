@@ -11,6 +11,9 @@
   <meta name="description" content="index">
   <meta name="keywords" content="index">
   <meta name="author" content="Sithumini Sandarekha Amarawansha Gamage">
+  
+  
   <script src="scripts/enhancements.js"></script>
+  
   <title>Home</title>
 </head>

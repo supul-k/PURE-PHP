@@ -1,6 +1,6 @@
 
 <?php
-include '/var/www/html/assign2/header.inc';
+include './header.inc';
 ?>
 
 <nav>

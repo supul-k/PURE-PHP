@@ -1,5 +1,5 @@
 <?php
-include '/var/www/html/assign2/menu.inc';
+include './menu.inc';
 ?>
 
 <body>
@@ -34,12 +34,12 @@ include '/var/www/html/assign2/menu.inc';
                     <!-- <label for="refno">Job Reference No</label> <input type="text" id="refno" name="jobreferenceno" minlength="5" maxlength="5" size="5"  placeholder="Reference Number">  -->
                     <div id="firstname">
                         <label for="firstname">First Name</label><span id="fnameError" class="error"></span>
-                        <input type="text" id="firstname" name="firstname" placeholder="First name" maxlength="30" size="30" required="required">
+                        <input type="text" id="firstname" name="firstname" placeholder="First name" maxlength="20" size="20" required="required">
                     </div>
 
                     <div id="lastname">
                         <label for="lastname">Last Name</label><span id="lnameError" class="error"></span>
-                        <input type="text" id="lastname" name="lastname" placeholder="Last name" maxlength="25" size="25" required="required">
+                        <input type="text" id="lastname" name="lastname" placeholder="Last name" maxlength="20" size="20" required="required">
                     </div>
 
                     <div>
@@ -128,5 +128,5 @@ include '/var/www/html/assign2/menu.inc';
 
 
 <?php
-include '/var/www/html/assign2/footer.inc';
+include './footer.inc';
 ?>
