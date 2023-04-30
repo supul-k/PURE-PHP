@@ -120,7 +120,11 @@ include './menu.inc';
                         <textarea id="otherskillstext" name="otherskills" placeholder="Write here your other skills" style="height:200px"></textarea>
 
                     </fieldset>
-                    <input type="submit" value="submit" id="submit" name="submit_eoi_form"> <input type="reset" value="Reset Form">
+                    <div class="applyButtonContainer">
+                    <input class="submitButton" type="submit" value="submit" id="submit" name="submit_eoi_form"> 
+                    <input class="resetFormButton" type="reset" value="Reset Form">
+                    </div>
+                    
                 </form>
             </div>
         </div>

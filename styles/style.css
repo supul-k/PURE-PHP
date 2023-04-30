@@ -5,295 +5,387 @@ created: 01/03/2023
 last modified: 26/03/2023
 description: Styles for HTML Pages
 */
-* {box-sizing: border-box;}
+* {
+  box-sizing: border-box;
+}
 /* Styles for navigation pane*/
 
 nav {
-	background-color: #1A237E; /* add a dark background color */
-	
-	padding: 10px; /* add some padding to the nav */
-	 width: 100wh;
-  }
-  
-  
+  background-color: #1a237e; /* add a dark background color */
 
+  padding: 10px; /* add some padding to the nav */
+  width: 100wh;
 
-  
+  transition: height 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 480px) {
   nav ul {
-	list-style-type: none; /* remove the default bullet points */
-	margin: 0; /* remove any default margin */
-	padding: 0; /* remove any default padding */
-	display: flex; /* use flexbox to lay out the li elements */
-	flex-wrap: wrap; /* allow the lis to wrap to the next line if needed */
-	justify-content: center; /* center the li elements horizontally */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
- 
-  
-  nav li {
-	margin: 0 10px; /* add some spacing between the li elements */
-	 width: 160px;
-  }
-  
-  nav li a {
-	display: block; /* make the links take up the full width of the li element */
-	color: white; /* set the link color to white */
-	text-align: center; /* center the link text within the li element */
-	padding: 14px 16px; /* add some padding around the link text */
-	text-decoration: none; /* remove the default underline styling */
-  }
-  
-  nav li a:hover {
-	background-color: #11175c; /* add a darker background color on hover */
-	transition: 0.3s; /* add transition effect to the hover state */
-  }
+}
 
-  nav li a:active {
-	background-color: #424bad; /* add a darker background color on hover */
-	transition: 0.3s; /* add transition effect to the hover state */
-  }
-  
-  
+nav ul {
+  list-style-type: none; /* remove the default bullet points */
+  margin: 0; /* remove any default margin */
+  padding: 0; /* remove any default padding */
+  display: flex; /* use flexbox to lay out the li elements */
+  flex-wrap: wrap; /* allow the lis to wrap to the next line if needed */
+  justify-content: center; /* center the li elements horizontally */
+}
+
+nav li {
+  margin: 0 5px; /* add some spacing between the li elements */
+  width: 160px;
+}
+
+nav li a {
+  display: block; /* make the links take up the full width of the li element */
+  color: white; /* set the link color to white */
+  text-align: center; /* center the link text within the li element */
+  padding: 10px 5px; /* add some padding around the link text */
+  text-decoration: none; /* remove the default underline styling */
+}
+
+nav li a:hover {
+  background-color: #11175c; /* add a darker background color on hover */
+  transition: 0.3s; /* add transition effect to the hover state */
+}
 
 /* Styles for artical*/
 article {
-	max-width: 80%;margin: 0 auto;
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 /* Styles for  body*/
 body {
-	background-color: #D1E4F5; font-family:Helvetica Neue, Helvetica, Arial;
-	font-size: 16px;
-	line-height: 1.5;
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-
-
-
+  background-color: #d1e4f5;
+  font-family: Helvetica Neue, Helvetica, Arial;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-section{
-	background-color: #D1E4F5;
-	padding-left: 40px;
-	padding-right: 40px;
+section {
+  background-color: #d1e4f5;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 /*Styles for Image Slider*/
 
 /* input {
 	display: none;
   } */
-  
 
-	  .nav {
-		width: 120px;
-		margin: 0 auto;
-	  }
-
-
-
-
-
-
-
+.nav {
+  width: 120px;
+  margin: 0 auto;
+}
 
 /* Styles for paragraph*/
-p {font-family: Georgia, serif}
+p {
+  font-family: Georgia, serif;
+}
 
 /* Styles for headers*/
 header {
-	background-image: url(images/header.jpg);
-	background-repeat: repeat-x;
-	text-align: center;
-	color:  3000033;
-	background-position: bottom;
-	height: 180px;
-	width: 100%;
+  background-image: url(images/header.jpg);
+  background-repeat: repeat-x;
+  text-align: center;
+  color: 3000033;
+  background-position: bottom;
+  height: 180px;
+  width: 100%;
 }
 header h1 {
-	font-size: 70px;
-	padding-top: .5em;
-	font-family: arial;
-	letter-spacing: 2px;
-	font-weight: bold;
-}
-.head2{
-	min-height: 100vh;
-    width: 100%;
-    background-image:url(images/background.jpg);
-    background-position: center;
-    background-size: cover;
-    position: relative;
+  font-size: 70px;
+  padding-top: 0.5em;
+  font-family: arial;
+  letter-spacing: 2px;
+  font-weight: bold;
 }
 
+
+	
+
+.head2 {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url(images/background.jpg);
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
 
 /* Styles for footer*/
 #footer1 p {
-	
-	
-	width:100%;
-	text-align: center;
-	background-color: #1A237E;
-	padding: .5em 0 .5em .5em;
-	margin: 0;
-	color: #f9f9f9;
-	font-family: Helvetica Neue, Helvetica, Arial;
-	font-size: 14px;
-	
-	
+  width: 100%;
+  text-align: center;
+  background-color: #1a237e;
+  padding: 0.5em 0 0.5em 0.5em;
+  margin: 0;
+  color: #f9f9f9;
+  font-family: Helvetica Neue, Helvetica, Arial;
+  font-size: 14px;
 }
-
 
 #footer1 {
-	margin-top: auto;
-    background-color: #f9f9f9;
-    border-top: 1px solid #ddd;
-    padding: 0px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  margin-top: auto;
+  background-color: #f9f9f9;
+  border-top: 1px solid #ddd;
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
-
 
 /* Styles for job positions page*/
 #heading1 {
-   font: 55px Times New Roman, serif;
-   text-align: center;
-   color: #090951;
+  font: 55px Times New Roman, serif;
+  text-align: center;
+  color: #090951;
 }
-.figure3 img{
-	
-		border-radius: 50px;
-	
+@media (max-width: 480px) {
+	#heading1 {
+		font: 30px Times New Roman, serif;
+	}
+  }
+.figure3 img {
+  border-radius: 50px;
 }
-.job_position_container{
-	width: 100%;
-	margin: 0 auto;
-	text-align: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	flex-direction: row;
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
-
-	
-
-.job_positions{
-	max-width: 800px;
-	flex:450px;
-	width: 25%;
-	text-align: center;
-	margin: 1em 1em 1em 1em;
-	border: 3px solid;
-	border-radius: 5px;
-	padding:10px;
-	box-shadow: 0px 1px 30px 3px rgba(0,0,0,0.59);
+.job_position_container {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: row;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-	
+.job_positions {
+  max-width: 800px;
+  flex: 450px;
+  width: 25%;
+  text-align: center;
+  margin: 1em 1em 1em 1em;
+  border: 3px solid;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0px 1px 30px 3px rgba(0, 0, 0, 0.59);
+}
 
-
-.jobdetails{
-	padding-right: 40px;
+.jobdetails {
+  padding-right: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-top: 10px;
 }
 
-.jobdetails li { 
+.jobdetails li {
   padding: 6px;
   text-align: left;
   padding-top: 20px;
 }
-.position{
-	text-align: center;
-	font-family: bold Copperplate, Papyrus, fantasy;}
-.closingdate{text-align:center;
-		color:red;}
-#job1, #job2, #job3, #job4{
-	text-align:center;
-	color:#17299B;
+.position {
+  text-align: center;
+  font-family: bold Copperplate, Papyrus, fantasy;
 }
-#a_color{color: #2e33ce ;}
-table, th, td {
+.closingdate {
+  text-align: center;
+  color: red;
+}
+#job1,
+#job2,
+#job3,
+#job4 {
+  text-align: center;
+  color: #17299b;
+}
+#a_color {
+  color: #2e33ce;
+}
+table,
+th,
+td {
   border: 1px solid black;
 }
 
+aside {
+  width: 25%;
+  border: 3px solid purple;
+  border-radius: 10px;
+  margin: 1em;
+  padding: 1em;
 
-  
-aside{
-	width: 25%;
-		border: 3px solid purple;
-		border-radius: 10px;
-		margin: 1em;
-		padding: 1em;
-		
-		float: right;
-		
-		}
-
-
-
-
-
+  float: right;
+}
 
 /* Styles for job application page*/
 
 .container {
   border-radius: 5px;
   padding: 15px;
-  
 }
-
+form {
+  background-color: #d1e4f592;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin: 20px;
+}
 
 .error {
   color: red;
   font-size: 14px;
   margin-left: 10px;
-  margin-top:0px;
+  margin-top: 0px;
 }
 
+.applyButtonContainer {
+  text-align: center;
+  padding-top: 10px;
+}
+.resetFormButton {
+  background-color: #f44336 !important;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width: 180px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+.submitButton {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  width: 180px;
 
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 
 /*This is for Css styles in about me page*/
 
-.sectionWrapper{
+.sectionWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+}
+#myphoto {
+  float: center;
+
+
+  
+}
+#mydata {
+  align: center;
+}
+
+#figure_myphoto {
+  border: 2px solid #ccc;
+  border-radius: 60px;
+  padding: 0px;
+  text-align: center;
+  width: fit-content;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  height: 300px;
+}
+#figure_myphoto img {
+  border-radius: 50px;
+  width: 300px;
+  
+}
+#figure_myresume{
+	width: auto;
+	min-width:350px;
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	max-width: 800px;
+	height: auto;
 	align-items: center;
-	padding-bottom:10px ;
+	justify-self:center;
+	justify-content: center;
 	
 }
-#myphoto{float:center;}
-#mydata {align: center}
 
-#figure_myphoto {border: 2px solid #ccc;
-	border-radius: 60px;
-		padding:0px; 
-		 text-align: center;
-		width: fit-content;
 	
-	}
-	#figure_myphoto img{border-radius: 50px;
-	}
 
-		
-#resume{float:right;}
 
-table {margin: auto;}
-#table, 
-#myprofile{text-align: center;}
-#tables {text-align: center;float:left;}
-td
-{width: 150px; height:45px;
+#resume {
+  float: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+@media screen and (max-width: 480px) {
+	#resume {
+	  width: 90%;
+	  overflow-x: scroll;
+	  text-align: center;
+	  overflow: scroll;
+	  padding-left: 400px;
+	  margin-right: 100px;
+	 
+	
+
+	}
 }
 
+
+	
+
+
+table {
+  margin: 10px;
+}
+#table,
+#myprofile {
+  text-align: center;
+}
+#tables {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+td {
+  width: 150px;
+  height: 45px;
+}
+@media screen and (max-width: 480px) {
+	#tables {
+	  width: 90%;
+	  overflow-x: scroll;
+	  text-align: center;
+	  overflow: scroll;
+	  padding-left: 400px;
+	  margin-right: 100px;
+	 
+	
+
+	}
+  }

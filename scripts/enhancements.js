@@ -54,6 +54,7 @@ function startImageSlider() {
 startImageSlider();
 
 function menulink (){
+  
 
 var currentUrl = window.location.href;
 var menuLinks = document.getElementsByTagName("a");
@@ -90,3 +91,13 @@ function startTimer() {
     }
   }, 1000);
 }
+
+const menuToggle = document.getElementById("menu-toggle");
+const nav = document.querySelector("nav");
+
+menuToggle.addEventListener("click", function() {
+  nav.classList.toggle("open");
+});
+
+
+
