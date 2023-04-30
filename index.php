@@ -19,9 +19,9 @@ include './menu.inc';
     </section>
   </main>
   <div class="imageSlider">
-    <input type="radio" name="slide" id="img-1" checked>
-    <input type="radio" name="slide" id="img-2">
-    <input type="radio" name="slide" id="img-3">
+    <input type="radio" name="slide" id="img-1" checked class="trackRadio">
+    <input type="radio" name="slide" id="img-2" class="trackRadio">
+    <input type="radio" name="slide" id="img-3" class="trackRadio">
 
     <div class="img-box">
       <img id="three" src="./images/image1.jpg">

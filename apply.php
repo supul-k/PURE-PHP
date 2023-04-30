@@ -26,19 +26,20 @@ include './menu.inc';
 
             <div class="container">
                 <form id="regform" method="POST" action="processEOI.php" novalidate="novalidate">
-                    <div id="refNumber">
+                    <div id="refNumber_div">
                         <label for="job-ref">Job Reference Number:</label>
-                        <span id="fnameError" class="error"></span>
-                        <input type="text" id="refNumber" name="refNumber" placeholder="reference number">
+                        <span id="refError" class="error"></span>
+                        <input type="text" id="refNumber" name="refNumber" value="" placeholder="reference number" readonly>
                     </div>
                     <!-- <label for="refno">Job Reference No</label> <input type="text" id="refno" name="jobreferenceno" minlength="5" maxlength="5" size="5"  placeholder="Reference Number">  -->
-                    <div id="firstname">
+                    <div id="firstname_div">
                         <label for="firstname">First Name</label><span id="fnameError" class="error"></span>
                         <input type="text" id="firstname" name="firstname" placeholder="First name" maxlength="20" size="20" required="required">
                     </div>
 
-                    <div id="lastname">
-                        <label for="lastname">Last Name</label><span id="lnameError" class="error"></span>
+                    <div id="lastname_div">
+                        <label for="lastname">Last Name</label>
+                        <span id="lnameError" class="error"></span>
                         <input type="text" id="lastname" name="lastname" placeholder="Last name" maxlength="20" size="20" required="required">
                     </div>
 
@@ -49,8 +50,9 @@ include './menu.inc';
 
                     </div>
 
-                    <div id="dateofbirth">
-                        <label for="dateofbirth">Date of Birth</label> <span id="bodError" class="error"></span>
+                    <div id="dateofbirth_div">
+                        <label for="dateofbirth">Date of Birth</label>
+                         <span id="bodError" class="error"></span>
                         <input type="date" id="dateofbirth" name="dateofbirth" value="2023-01-01" required="required">
                     </div>
 

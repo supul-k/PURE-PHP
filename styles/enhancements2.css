@@ -22,6 +22,8 @@
 		  display: inline-block;
 		transition: background-color .4s;
 	  }
+
+	  .trackRadio{display: none;}
 	  
 	  .radio:hover {
 		background-color: #4450db;
@@ -120,3 +122,10 @@ th {
   padding: 10px 20px;
   border-radius: 5px;
 }
+
+#show_all {
+	background-color: #d8d514;
+	color: #fff;
+	padding: 10px 20px;
+	border-radius: 5px;
+  }

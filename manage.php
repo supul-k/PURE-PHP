@@ -23,15 +23,15 @@ if (isset($_SESSION['error_message'])) {
 <body>
     <div style="display: flex; justify-content: space-evenly;">
         <div style="max-width: 400px; ">
-            <form method="post" style="padding: 10px; text-align: center;" >
+            <form method="post" style="padding: 10px; text-align: center;">
                 <div id="firstname">
                     <label for="firstname">First Name</label><span id="fnameError" class="error"></span>
-                    <input type="text" id="firstname" name="firstname" placeholder="First name" maxlength="30" size="30" >
+                    <input type="text" id="firstname" name="firstname" placeholder="First name" maxlength="30" size="30">
                 </div>
 
                 <div id="lastname">
                     <label for="lastname">Last Name</label><span id="lnameError" class="error"></span>
-                    <input type="text" id="lastname" name="lastname" placeholder="Last name" maxlength="25" size="25" >
+                    <input type="text" id="lastname" name="lastname" placeholder="Last name" maxlength="25" size="25">
                 </div>
                 <div id="buttons" style="padding: 10px;">
                     <div style="text-align: center; padding-bottom: 10px;">
@@ -74,8 +74,13 @@ if (isset($_SESSION['error_message'])) {
                 </div>
             </form>
         </div>
+        <div>
+            <div style="text-align: center;">
+                <button type="button" value="show_all" id="show_all" name="show_all">show all</button>
+            </div>
+        </div>
     </div>
-    <table id="table">
+    <table id="table" style="padding: 30px;">
         <tr>
             <th>EOInumber</th>
             <th>job_reference</th>
@@ -104,7 +109,7 @@ if (isset($_SESSION['error_message'])) {
                 $firstname = $_POST['firstname'];
                 $lastname = $_POST['lastname'];
 
-                echo($firstname . '----'. $lastname );
+                echo ($firstname . '----' . $lastname);
 
                 $sql = "SELECT * FROM eoi WHERE first_name = '$firstname' AND last_name = '$lastname' ";
                 $result = mysqli_query($conn, $sql);
@@ -112,7 +117,6 @@ if (isset($_SESSION['error_message'])) {
                 if (!$result) {
                     $_SESSION['error_message'] = 'Please enter first name and lastname before click search button';
                 }
-
             } elseif (!empty($_POST['firstname'])) {
 
                 $firstname = $_POST['firstname'];
@@ -123,7 +127,6 @@ if (isset($_SESSION['error_message'])) {
                 if (!$result) {
                     $_SESSION['error_message'] = 'Please enter first name before click search button';
                 }
-
             } elseif (!empty($_POST['lastname'])) {
 
                 $lastname = $_POST['lastname'];
@@ -134,13 +137,12 @@ if (isset($_SESSION['error_message'])) {
                 if (!$result) {
                     $_SESSION['error_message'] = 'Please enter last name before click search button';
                 }
-
             } else {
                 if (!$result) {
                     $_SESSION['error_message'] = 'Please enter data into at least one of the fields.';
                 }
             }
-        } else {
+        } elseif (isset($_POST['show_all'])) {
 
             $sql = 'SELECT * FROM eoi';
             $result = mysqli_query($conn, $sql);
@@ -148,7 +150,20 @@ if (isset($_SESSION['error_message'])) {
             if (!$result) {
                 die('Query failed: ' . mysqli_error($conn));
             }
+        } else {
+            $sql = 'SELECT * FROM eoi';
+            $result = mysqli_query($conn, $sql);
+
+            if (!$result) {
+                die('Query failed: ' . mysqli_error($conn));
+            }
         }
+
+        // if (isset($_POST['show_all'])) {
+        //     $sql = "SELECT * FROM eoi";
+        //     $result = mysqli_query($conn, $sql);
+
+        // }
 
         while ($row = mysqli_fetch_assoc($result)) {
             echo '<tr>';
