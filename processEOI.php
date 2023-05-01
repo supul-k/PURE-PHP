@@ -3,9 +3,6 @@
 // Include settings.php to access database connection settings
 session_start();
 
-
-echo ('hi');
-
 if (isset($_POST['submit_eoi_form'])) {
     eoi_form_submission();
 }
@@ -18,9 +15,16 @@ if (isset($_POST['submit_change_status'])) {
     submit_change_status();
 }
 
-// if (isset($_POST['search_record'])) {
-//     search_record();
-// }
+if (isset($_POST['register'])) {
+    register();
+}
+
+if (isset($_POST['login'])) {
+    login();
+}
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'log_out') {
+    logout();
+}
 
 
 
@@ -110,10 +114,11 @@ function eoi_form_submission()
 
         // Check if the table already exists
 
-        $query = "SELECT * FROM 'eoi' LIMIT 1";
+        $query = "SHOW TABLES LIKE 'eoi'";
         $result = mysqli_query($conn, $query);
+        $tableExists = mysqli_num_rows($result) > 0;
 
-        if (!$result) {
+        if (!$tableExists) {
             // Table does not exist, create it
             $sql = "CREATE TABLE eoi (
             EOInumber int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -255,10 +260,10 @@ function submit_change_status()
 //     session_start();
 
 
-    // if (isset($_POST['firstname']) && isset($_POST['lastname'])) {
+// if (isset($_POST['firstname']) && isset($_POST['lastname'])) {
 
-    //     $firstname = $_POST['firstname'];
-    //     $lastname = $_POST['lastname'];
+//     $firstname = $_POST['firstname'];
+//     $lastname = $_POST['lastname'];
 
 //         // Construct the SQL query to delete the record based on the EOInumber
 //         $sql = "SELECT * FROM `eoi` WHERE `first_name` = '$firstname' AND `last_name` = '$lastname';";
@@ -280,3 +285,118 @@ function submit_change_status()
 //         exit();
 //     }
 // }
+
+function register()
+{
+
+    require_once 'settings.php';
+    session_start();
+
+    // Check if the form was submitted
+    $query = "SHOW TABLES LIKE 'registration'";
+    $result = mysqli_query($conn, $query);
+    $tableExists = mysqli_num_rows($result) > 0;
+
+    if (!$tableExists) {
+        $sql = "CREATE TABLE registration (
+            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(30) NOT NULL,
+            email VARCHAR(50) NOT NULL,
+            role varchar(10) DEFAULT NULL,
+            password VARCHAR(30) NOT NULL
+        )";
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name = $_POST["username_register"];
+        $email = $_POST["email_register"];
+        $password = $_POST["password"];
+        $confirmPassword = $_POST['confirm-password'];
+
+        if ($_POST['role'] == 'admin') {
+            $role = 'admin';
+        } else if ($_POST['role'] == 'user') {
+            $role = 'user';
+        } else {
+            $role = null;
+        }
+
+
+        // Validate form data
+        if ($password !== $confirmPassword) {
+            $_SESSION['error_message'] = 'Passwords do not match. Please try again.';
+
+            header('Location: registration.php');
+            exit();
+        }
+
+
+        $sql = "INSERT INTO registration (name , email , role , password)
+                VALUES ('$name', '$email', '$role' , '$password')";
+    }
+
+    if (!mysqli_query($conn, $sql)) {
+        // Set session variable with success message
+        $_SESSION['error_message'] = 'Error Occured while Register';
+    }
+    mysqli_close($conn);
+    header('Location: login.php');
+}
+
+function login()
+{
+
+    require_once 'settings.php';
+    session_start();
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Retrieve the submitted email and password
+        $email = $_POST['email_login'];
+        $password = $_POST['password_login'];
+
+        // Construct a query to find the user with the specified email and password
+        $sql = "SELECT * FROM registration WHERE email='$email' AND password='$password'";
+
+        // Execute the query
+        $result = mysqli_query($conn, $sql);
+
+        // Check if the query returned a row
+        if (mysqli_num_rows($result) == 1) {
+            // Authentication succeeded, start a new session and redirect to the dashboard
+            while ($row = mysqli_fetch_assoc($result)) {
+                if ($row['role'] == 'admin') {
+
+                    session_regenerate_id();
+                    $_SESSION['loggedin'] = TRUE;
+                    $_SESSION['email'] = $email;
+                    $_SESSION['role'] = $row['role'];
+                    header('Location: manage.php');
+                    exit();
+                } elseif ($row['role'] == 'user') {
+
+                    session_regenerate_id();
+                    $_SESSION['loggedin'] = TRUE;
+                    $_SESSION['email'] = $email;
+                    $_SESSION['role'] = $row['role'];
+                    header('Location: index.php');
+                    exit();
+                }
+            }
+        } else {
+            // Authentication failed, display an error message
+            $_SESSION['error_message'] = 'Invalid Email or Password';
+        }
+
+        mysqli_close($conn);
+    }
+
+
+    header('Location: login.php');
+}
+
+function logout()
+{
+    session_start();
+    session_unset();
+    session_destroy();
+}
