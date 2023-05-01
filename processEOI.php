@@ -22,9 +22,9 @@ if (isset($_POST['register'])) {
 if (isset($_POST['login'])) {
     login();
 }
-// if (isset($_POST['search_record'])) {
-//     search_record();
-// }
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'log_out') {
+    logout();
+}
 
 
 
@@ -302,21 +302,25 @@ function register()
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(30) NOT NULL,
             email VARCHAR(50) NOT NULL,
+            role varchar(10) DEFAULT NULL,
             password VARCHAR(30) NOT NULL
         )";
     }
 
-    if (mysqli_query($conn, $sql)) {
-        echo "Table registration created successfully";
-    } else {
-        echo "Error creating table: " . mysqli_error($conn);
-    }
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $name = $_POST["email_register"];
-        $email = $_POST["username_register"];
+        $name = $_POST["username_register"];
+        $email = $_POST["email_register"];
         $password = $_POST["password"];
         $confirmPassword = $_POST['confirm-password'];
+
+        if ($_POST['role'] == 'admin') {
+            $role = 'admin';
+        } else if ($_POST['role'] == 'user') {
+            $role = 'user';
+        } else {
+            $role = null;
+        }
+
 
         // Validate form data
         if ($password !== $confirmPassword) {
@@ -327,26 +331,15 @@ function register()
         }
 
 
-        $sql = "INSERT INTO registration (name, email, password)
-                VALUES ('$name', '$email', '$password')";
-
-        if (mysqli_query($conn, $sql)) {
-            echo "Registration successful";
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
+        $sql = "INSERT INTO registration (name , email , role , password)
+                VALUES ('$name', '$email', '$role' , '$password')";
     }
 
-    mysqli_close($conn);
-
-    if (mysqli_query($conn, $sql)) {
-        // Set session variable with success message
-        $_SESSION['success_message'] = 'User Registered successfully';
-    } else {
+    if (!mysqli_query($conn, $sql)) {
         // Set session variable with success message
         $_SESSION['error_message'] = 'Error Occured while Register';
     }
-
+    mysqli_close($conn);
     header('Location: login.php');
 }
 
@@ -360,27 +353,50 @@ function login()
         // Retrieve the submitted email and password
         $email = $_POST['email_login'];
         $password = $_POST['password_login'];
-    
+
         // Construct a query to find the user with the specified email and password
-        $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
-    
+        $sql = "SELECT * FROM registration WHERE email='$email' AND password='$password'";
+
         // Execute the query
         $result = mysqli_query($conn, $sql);
-    
+
         // Check if the query returned a row
         if (mysqli_num_rows($result) == 1) {
             // Authentication succeeded, start a new session and redirect to the dashboard
-            session_regenerate_id();
-            $_SESSION['loggedin'] = TRUE;
-            $_SESSION['email'] = $email;
-            header('Location: manage.php');
-            exit();
+            while ($row = mysqli_fetch_assoc($result)) {
+                if ($row['role'] == 'admin') {
+
+                    session_regenerate_id();
+                    $_SESSION['loggedin'] = TRUE;
+                    $_SESSION['email'] = $email;
+                    $_SESSION['role'] = $row['role'];
+                    header('Location: manage.php');
+                    exit();
+                } elseif ($row['role'] == 'user') {
+
+                    session_regenerate_id();
+                    $_SESSION['loggedin'] = TRUE;
+                    $_SESSION['email'] = $email;
+                    $_SESSION['role'] = $row['role'];
+                    header('Location: index.php');
+                    exit();
+                }
+            }
         } else {
             // Authentication failed, display an error message
-            $_SESSION['error_message'] = 'User Registered successfully';
+            $_SESSION['error_message'] = 'Invalid Email or Password';
         }
+
+        mysqli_close($conn);
     }
 
 
     header('Location: login.php');
+}
+
+function logout()
+{
+    session_start();
+    session_unset();
+    session_destroy();
 }

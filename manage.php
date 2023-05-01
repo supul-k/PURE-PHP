@@ -3,6 +3,11 @@ include './menu.inc';
 require_once 'settings.php';
 session_start();
 
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+  header('Location: login.php');
+  exit();
+}
+
 if (isset($_SESSION['success_message'])) {
     // Display success message and unset the session variable
     echo '<div class="success-message">' . $_SESSION['success_message'] . '</div>';

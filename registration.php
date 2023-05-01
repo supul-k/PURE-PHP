@@ -20,13 +20,20 @@ if (isset($_SESSION['error_message'])) {
 
 <body>
   <h1>Registration Page</h1>
-  
+
   <form class="formRegistration" method="post" action="processEOI.php">
     <label for="email" class="labelRegistration ">Email:</label>
     <input class="inputRegistration" type="text" id="email" name="email_register" required>
 
     <label for="username" class="labelRegistration">Username:</label>
     <input class="inputRegistration" type="text" id="username" name="username_register" required>
+
+    <label for="role" class="labelRegistration">Role:</label>
+    <div>
+      <label><input class="inputRegistration" type="radio" id="admin" name="role" value="admin" required="">Admin</label>
+      <label><input class="inputRegistration" type="radio" id="user" name="role" value="user">User</label> <br>
+      <span id="genderError" class="error"></span>
+    </div>
 
     <label for="password" class="labelRegistration">Password:</label>
     <input class="inputRegistration" type="password" id="password" name="password" required>
