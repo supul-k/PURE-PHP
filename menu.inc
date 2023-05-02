@@ -27,6 +27,24 @@ if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
       <li>
         <a href="manage.php">Manage</a>
       </li>
+      <li>
+        <a href="index.php">Home</a>
+      </li>
+      <li>
+        <a href="jobs.php">Jobs</a>
+      </li>
+      <li>
+        <a href="about.php">About Me</a>
+      </li>
+      <li>
+        <a href="enhancements1.php">Enhancements 1</a>
+      </li>
+      <li>
+        <a href="enhancements2.php">Enhancements 2</a>
+      </li>
+      <li>
+        <a href="enhancements3.php">Enhancements 3</a>
+      </li>
     </ul>
     <ul>
       <li>

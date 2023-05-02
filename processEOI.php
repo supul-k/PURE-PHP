@@ -37,81 +37,6 @@ function eoi_form_submission()
 
     // Check if the form was submitted
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-        // Define validation rules
-        // $validationRules = array(
-        //     'refNumber' => 'required',
-        //     'firstname' => 'required|alpha|max:30',
-        //     'lastname' => 'required|alpha|max:25',
-        //     'email' => 'required|email|max:40',
-        //     'dateofbirth' => 'required|date',
-        //     'gender' => 'required',
-        //     'street_address' => 'required|max:50',
-        //     'suburb_town' => 'required|max:50',
-        //     'states' => 'required',
-        //     'postal_code' => 'required|digits:4',
-        //     'pnumber' => 'required|digits:10',
-        //     'skills' => 'required'
-        // );
-
-        // // Define error messages
-        // $errorMessages = array(
-        //     'required' => 'This field is required',
-        //     'alpha' => 'This field must contain only alphabetic characters',
-        //     'email' => 'Please enter a valid email address',
-        //     'date' => 'Please enter a valid date',
-        //     'digits' => 'Please enter only digits'
-        // );
-
-        // //   Initialize an array to hold validation errors
-        // $errors = array();
-
-        // // Loop through each field and validate its value
-        // foreach ($validationRules as $fieldName => $rules) {
-        //     $fieldValue = $_POST[$fieldName];
-
-        //     // Check if the field value is required and is empty
-        //     if (strpos($rules, 'required') !== false && empty($fieldValue)) {
-        //         $errors[$fieldName] = $errorMessages['required'];
-        //     }
-
-        //     // Check each validation rule and add an error message if the value is invalid
-        //     $rulesArray = explode('|', $rules);
-        //     foreach ($rulesArray as $rule) {
-        //         switch ($rule) {
-        //             case 'alpha':
-        //                 if (!ctype_alpha($fieldValue)) {
-        //                     $errors[$fieldName] = $errorMessages['alpha'];
-        //                 }
-        //                 break;
-        //             case 'email':
-        //                 if (!filter_var($fieldValue, FILTER_VALIDATE_EMAIL)) {
-        //                     $errors[$fieldName] = $errorMessages['email'];
-        //                 }
-        //                 break;
-        //             case 'date':
-        //                 $dateArray = explode('-', $fieldValue);
-        //                 if (count($dateArray) !== 3 || !checkdate($dateArray[1], $dateArray[2], $dateArray[0])) {
-        //                     $errors[$fieldName] = $errorMessages['date'];
-        //                 }
-        //                 break;
-        //             case 'digits':
-        //                 if (!ctype_digit($fieldValue)) {
-        //                     $errors[$fieldName] = $errorMessages['digits'];
-        //                 }
-        //                 break;
-        //             case 'max':
-        //                 $maxValue = intval(substr($rule, strpos($rule, ':') + 1));
-        //                 if (strlen($fieldValue) > $maxValue) {
-        //                     $errors[$fieldName] = "Please enter no more than {$maxValue} characters";
-        //                 }
-        //                 break;
-        //             default:
-        //                 break;
-        //         }
-        //     }
-        // }
-
         // Check if the table already exists
 
         $query = "SHOW TABLES LIKE 'eoi'";
@@ -133,16 +58,10 @@ function eoi_form_submission()
             postcode char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
             email varchar(50) DEFAULT NULL,
             phone varchar(12) DEFAULT NULL,
+            skills varchar(255) DEFAULT NULL,
             other_skills varchar(255) DEFAULT NULL,
             status enum('New','Current','Final') DEFAULT NULL
           ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci";
-
-            // Execute the CREATE TABLE query
-            if (mysqli_query($conn, $sql)) {
-                echo "Table created successfully";
-            } else {
-                echo "Error creating table: " . mysqli_error($conn);
-            }
         }
 
         if ($_POST['gender'] == 'male') {
@@ -152,6 +71,19 @@ function eoi_form_submission()
         } else {
             $gen = null;
         }
+
+        $html_css = isset($_POST['skill1']) ? 'HTML/CSS,' : '';
+        $javascript = isset($_POST['skill2']) ? 'JavaScript,' : '';
+        $python = isset($_POST['skill3']) ? 'Python,' : '';
+        $java = isset($_POST['skill4']) ? 'Programming Java,' : '';
+        $c_plus = isset($_POST['skill5']) ? 'Programming C+,' : '';
+        $sql = isset($_POST['skill6']) ? 'SQL,' : '';
+        $mongodb = isset($_POST['skill7']) ? 'MongoDB,' : '';
+        $other = isset($_POST['otherskills']) ? $_POST['otherskills'] : '';
+
+        // concatenate all the checkbox values into a single string
+        $all_skills = $html_css . $javascript . $python . $java . $c_plus . $sql . $mongodb . $other;
+
 
         // If there are no validation errors, insert the form data into the database
         // if (count($errors) === 0) {
@@ -166,10 +98,11 @@ function eoi_form_submission()
         $states = mysqli_real_escape_string($conn, $_POST['states']);
         $postal_code = mysqli_real_escape_string($conn, $_POST['postal_code']);
         $pnumber = mysqli_real_escape_string($conn, $_POST['pnumber']);
-        $skills = mysqli_real_escape_string($conn, $_POST['skills']);
+        $skills = mysqli_real_escape_string($conn, $all_skills);
+        $otherskills = mysqli_real_escape_string($conn, $_POST['otherskills']);
 
-        $sql = "INSERT INTO eoi (job_reference, first_name, last_name, email, date_of_birth, gender, street_address, suburb_town, state , postcode, phone, other_skills) 
-            VALUES ('$refNumber', '$firstname', '$lastname', '$email', '$dateofbirth', '$gender', '$street_address', '$suburb_town', '$states', '$postal_code', '$pnumber', '$skills')";
+        $sql = "INSERT INTO eoi (job_reference, first_name, last_name, email, date_of_birth, gender, street_address, suburb_town, state , postcode, phone, skills ,other_skills, status) 
+            VALUES ('$refNumber', '$firstname', '$lastname', '$email', '$dateofbirth', '$gender', '$street_address', '$suburb_town', '$states', '$postal_code', '$pnumber', '$skills' ,'$otherskills','New')";
 
         if (mysqli_query($conn, $sql)) {
             // Set session variable with success message
@@ -237,14 +170,14 @@ function submit_change_status()
 
         // Execute the SQL query
         mysqli_query($conn, $sql);
+        $result = mysqli_query($conn, $sql);
 
-
-        if (mysqli_query($conn, $sql)) {
-            // Set session variable with success message
-            $_SESSION['success_message'] = 'Status Updated successfully';
-        } else {
-            // Set session variable with success message
+        if (!$result) {
+            // Set session variable with eror message
             $_SESSION['error_message'] = 'Error Occured while updating status';
+        } else {
+             // Set session variable with success message
+             $_SESSION['success_message'] = 'Status Updated successfully';
         }
 
         // Redirect the user to another page
@@ -252,39 +185,6 @@ function submit_change_status()
         exit();
     }
 }
-
-// function search_record()
-// {
-
-//     require_once 'settings.php';
-//     session_start();
-
-
-// if (isset($_POST['firstname']) && isset($_POST['lastname'])) {
-
-//     $firstname = $_POST['firstname'];
-//     $lastname = $_POST['lastname'];
-
-//         // Construct the SQL query to delete the record based on the EOInumber
-//         $sql = "SELECT * FROM `eoi` WHERE `first_name` = '$firstname' AND `last_name` = '$lastname';";
-
-//         // Execute the SQL query
-//         mysqli_query($conn, $sql);
-
-
-//         if (mysqli_query($conn, $sql)) {
-//             // Set session variable with success message
-//             $_SESSION['success_message'] = 'Status Updated successfully';
-//         } else {
-//             // Set session variable with success message
-//             $_SESSION['error_message'] = 'Error Occured while updating status';
-//         }
-
-//         // Redirect the user to another page
-//         header("Location: manage.php");
-//         exit();
-//     }
-// }
 
 function register()
 {
@@ -384,14 +284,12 @@ function login()
             }
         } else {
             // Authentication failed, display an error message
-            $_SESSION['error_message'] = 'Invalid Email or Password';
+            $_SESSION['loginerror-message'] = 'Invalid Email or Password';
+            header('Location: login.php');
         }
 
         mysqli_close($conn);
     }
-
-
-    header('Location: login.php');
 }
 
 function logout()

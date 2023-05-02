@@ -13,6 +13,7 @@ function validate() {
   var errMsg = "Error Message : \n";
   var result = true;
 
+  var refNumber = document.getElementById("refNumber").value;
   var firstname = document.getElementById("firstname").value;
   var lastname = document.getElementById("lastname").value;
   var state = document.getElementById("states").value;
@@ -21,7 +22,12 @@ function validate() {
   var email = document.getElementById("email").value;
   var pnumber = document.getElementById("pnumber").value;
 
-  console.log(pnumber);
+  if (refNumber == "") {
+    document.getElementById("refError").innerHTML =
+      "You must select job first from job section";
+  } else if (firstname.match(/^[a-zA-Z]+$/)) {
+    document.getElementById("fnameError").innerHTML = "";
+  }
 
   if (!firstname.match(/^[a-zA-Z]+$/)) {
     document.getElementById("fnameError").innerHTML =
@@ -37,11 +43,13 @@ function validate() {
   }
   if (lastname.match(/^[a-zA-Z]+$/)) {
     document.getElementById("lnameError").innerHTML = "";
-    result = false;
   }
 
   // Validate email
-  if (!email.match(/^\S+@\S+\.\S+$/) || document.getElementById("email").value == "") {
+  if (
+    !email.match(/^\S+@\S+\.\S+$/) ||
+    document.getElementById("email").value == ""
+  ) {
     document.getElementById("emailError").innerHTML =
       "You must enter a valid email address";
     result = false;
@@ -59,7 +67,10 @@ function validate() {
   }
 
   // Validate phone number
-  if (!pnumber.match(/^\d{10}$/) || document.getElementById("pnumber").value == "") {
+  if (
+    !pnumber.match(/^\d{10}$/) ||
+    document.getElementById("pnumber").value == ""
+  ) {
     document.getElementById("phoneError").innerHTML =
       "You must enter a valid 10-digit phone number";
     result = false;
@@ -97,6 +108,7 @@ function validate() {
   //Matching the first digit of the postcode according to the selected State
   //VIC = 3 OR 8, NSW = 1 OR 2, QLD = 4 OR 9, NT = 0, WA = 6, SA=5, TAS=7, ACT= 0.
   if (postcode.charAt(0) == 3 && state == "VIC") {
+    document.getElementById("pcodeError").innerHTML = "";
   } else if (postcode.charAt(0) == 8 && state == "VIC") {
     document.getElementById("pcodeError").innerHTML = "";
   } else if (postcode.charAt(0) == 1 && state == "NSW") {
@@ -140,6 +152,7 @@ function validate() {
 
   var email = document.getElementById("email").value;
   var phone = document.getElementById("pnumber").value;
+
   var htmlcss = document.getElementById("skill1").checked;
   var javascript = document.getElementById("skill2").checked;
   var python = document.getElementById("skill3").checked;
@@ -147,6 +160,7 @@ function validate() {
   var programmingc = document.getElementById("skill5").checked;
   var sql = document.getElementById("skill6").checked;
   var mongodb = document.getElementById("skill7").checked;
+  var otherSkills = document.getElementById("otherskills").checked;
 
   if (
     htmlcss ||
@@ -156,21 +170,21 @@ function validate() {
     programmingc ||
     sql ||
     mongodb ||
-    otherSkillsCheckbox
+    otherSkills
   ) {
     document.getElementById("skillError").innerHTML = "";
-    result = false;
   } else {
     document.getElementById("skillError").innerHTML =
       "Please select at least one skill";
+    result = false;
   }
 
   if (male || female) {
     document.getElementById("genderError").innerHTML = "";
-    result = false;
   } else {
     document.getElementById("genderError").innerHTML =
       "Please select your gender";
+    result = false;
   }
 
   var dob = document.getElementById("dateofbirth").value;
@@ -181,7 +195,6 @@ function validate() {
   if (!dobRegex.test(dob)) {
     document.getElementById("bodError").innerHTML = "";
     //alert("Please enter a valid date of birth in dd/mm/yyyy format.");
-    return false;
   } else if (dobRegex.test(dob)) {
     document.getElementById("bodError").innerHTML =
       "Please enter a valid date of birth in dd/mm/yyyy format";
@@ -194,7 +207,12 @@ function validate() {
       "you must be in 15-80 age for this form";
     return false;
   }
-  return result;
+
+  console.log(result);
+  
+  if (result == true) {
+    regForm.submit();
+  }
 }
 
 function calculateAge(dob) {
@@ -214,9 +232,7 @@ function setJobRefNumber() {
   // Get job reference number from URL query parameter
   const urlParams = new URLSearchParams(window.location.search);
   const refNumber = urlParams.get("refNumber");
-  console.log(refNumber); // Add this line to print the value of refNumber
 
   // Set job reference number as value of job reference field
   document.getElementById("refNumber").value = refNumber;
-  console.log("JavaScript file loaded");
 }
