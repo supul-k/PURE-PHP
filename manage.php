@@ -4,61 +4,67 @@ require_once 'settings.php';
 session_start();
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-  header('Location: login.php');
-  exit();
+    header('Location: login.php');
+    exit();
 }
-
-if (isset($_SESSION['success_message'])) {
-    // Display success message and unset the session variable
-    echo '<div class="success-message">' . $_SESSION['success_message'] . '</div>';
-    unset($_SESSION['success_message']);
-}
-
-if (isset($_SESSION['error_message'])) {
-    // Display success message and unset the session variable
-    // foreach ($_SESSION['error_messages'] as $error_message) {
-    echo '<div class="error-message">' . $_SESSION['error_message'] . '</div>';
-    // }
-    unset($_SESSION['error_message']);
-}
-
-
 ?>
 
 <body>
-    <div style="display: flex; justify-content: space-evenly;">
-        <div style="max-width: 400px; ">
-            <form method="post" style="padding: 10px; text-align: center;">
-                <div id="firstname">
+    <div style="max-width: 100%; display: grid; justify-content: space-evenly;">
+        <?php
+        if (isset($_SESSION['success_message'])) {
+            // Display success message and unset the session variable
+            echo '<div class="success-message" style="padding: 10px;">' . $_SESSION['success_message'] . '</div>';
+            unset($_SESSION['success_message']);
+        }
+
+        if (isset($_SESSION['error_message'])) {
+            // Display success message and unset the session variable
+            // foreach ($_SESSION['error_messages'] as $error_message) {
+            echo '<div class="error-message" style="padding: 10px;">' . $_SESSION['error_message'] . '</div>';
+            // }
+            unset($_SESSION['error_message']);
+        }
+        ?>
+        <div style="max-width: 100%; ">
+            <div style=" padding-left: 20px; padding-top: 20px">
+                <h3 style="font-family: Arial; color: #333; margin: 0;">
+                    Filter Data by First Name, Last Name, or Both
+                </h3>
+            </div>
+            <form method="post" style="padding: 10px; display: flex;">
+                <div id="firstname" style="padding: 10px;">
                     <label for="firstname">First Name</label><span id="fnameError" class="error"></span>
                     <input type="text" id="firstname" name="firstname" placeholder="First name" maxlength="30" size="30">
                 </div>
 
-                <div id="lastname">
+                <div id="lastname" style="padding: 10px;">
                     <label for="lastname">Last Name</label><span id="lnameError" class="error"></span>
                     <input type="text" id="lastname" name="lastname" placeholder="Last name" maxlength="25" size="25">
                 </div>
-                <div id="buttons" style="padding: 10px;">
-                    <div style="text-align: center; padding-bottom: 10px;">
+                <div id="buttons" style="padding-top: 30px;">
+                    <div style="text-align: center; padding: 10px; text-color: black;">
                         <button type="submit" value="search_record" id="search_record" name="search_record">Search</button>
+                    </div>
+                </div>
+                <div id="buttons" style="padding-top: 30px;">
+                    <div style="text-align: center; padding: 10px; ">
+                        <button type="submit" value="show_all" id="show_all" name="show_all">show all</button>
                     </div>
                 </div>
             </form>
         </div>
-        <div style="max-width: 400px; ">
-            <form method="post" style="padding: 10px; text-align: center;" action="processEOI.php">
-                <div>
-                    <div>
+        <div style="display: grid; justify-content: space-evenly;">
+            <div style="max-width: 100%; ">
+                <form method="post" style="display: flex; padding: 10px;" action="processEOI.php" id="change_status_form" novalidate="novalidate">
+                    <div style="padding: 10px;">
 
                         <label for="reference">Reference Number:</label>
+                        <span id="referenceError" class="error"></span>
                         <input style="padding: left 20px;" type="text" id="reference" name="reference">
                     </div>
 
-
-                </div>
-
-                <div>
-                    <div>
+                    <div style="padding: 10px;">
                         <label for="change_status">Change Status of the application:</label>
                         <select id="change_status" name="change_status">
                             <option value="New">New</option>
@@ -67,25 +73,21 @@ if (isset($_SESSION['error_message'])) {
                         </select>
                     </div>
 
-
-                </div>
-                <div id="buttons" style="padding: 10px;">
-                    <div style="text-align: center; padding-bottom: 10px;">
-                        <button type="submit" value="delete_record" id="reference_btn" name="submit_delete_record">Delete</button>
+                    <div id="buttons" style="padding-top: 30px;">
+                        <div style="text-align: center; padding: 10px;">
+                            <button type="submit" value="delete_record" id="reference_btn" name="submit_delete_record">Delete</button>
+                        </div>
                     </div>
-                    <div style="text-align: center;">
-                        <button type="submit" value="change_status" id="change_status_btn" name="submit_change_status">Change Status</button>
+                    <div id="buttons" style="padding-top: 30px;">
+                        <div style="text-align: center; padding: 10px;">
+                            <button type="submit" value="change_status" id="change_status_btn" name="submit_change_status">Change Status</button>
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
-        <div>
-            <div style="text-align: center;">
-                <button type="button" value="show_all" id="show_all" name="show_all">show all</button>
+                </form>
             </div>
         </div>
     </div>
-    <table id="table" style="padding: 30px;">
+    <table id="table" style="max-width: 80%; margin: 0 auto; padding: 20px">
         <tr>
             <th>EOInumber</th>
             <th>job_reference</th>
@@ -106,15 +108,9 @@ if (isset($_SESSION['error_message'])) {
 
         if (isset($_POST['search_record'])) {
             if (!empty($_POST['firstname']) && !empty($_POST['lastname'])) {
-                // if (!empty($_POST['lastname'])) {
-                //     // Do something if the lastname field is not empty
-                // } else {
-                //     // Do something if the lastname field is empty
-                // }
+
                 $firstname = $_POST['firstname'];
                 $lastname = $_POST['lastname'];
-
-                echo ($firstname . '----' . $lastname);
 
                 $sql = "SELECT * FROM eoi WHERE first_name = '$firstname' AND last_name = '$lastname' ";
                 $result = mysqli_query($conn, $sql);

@@ -44,6 +44,7 @@ if (isset($_SESSION['error_message'])) {
     <div class="buttonContainer">
       <input class="inputRegistration" type="submit" name="register" value="register">
     </div>
+    <p style="text-align: center;">Have an account ? <a href="login.php">Login here</a></p>
   </form>
 
 </body>
