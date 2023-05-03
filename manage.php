@@ -43,7 +43,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     <input type="text" id="lastname" name="lastname" placeholder="Last name" maxlength="25" size="25">
                 </div>
                 <div id="buttons" style="padding-top: 30px;">
-                    <div style="text-align: center; padding: 10px; text-color: black;">
+                    <div style="text-align: center; padding: 10px; color: black;">
                         <button type="submit" value="search_record" id="search_record" name="search_record">Search</button>
                     </div>
                 </div>
@@ -58,15 +58,20 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             <div style="max-width: 100%; ">
                 <form method="post" style="display: flex; padding: 10px;" action="processEOI.php" id="change_status_form" novalidate="novalidate">
                     <div style="padding: 10px;">
-
                         <label for="reference">Reference Number:</label>
-                        <span id="referenceError" class="error"></span>
-                        <input style="padding: left 20px;" type="text" id="reference" name="reference">
+                        <select id="reference" name="reference">
+                            <option value="select reference number" selected disabled>select reference number</option>
+                            <option value="011AA">Ref: 011AA</option>
+                            <option value="012BB">Ref: 012BB</option>
+                            <option value="013CC">Ref: 013CC</option>
+                            <option value="014DD">Ref: 014DD</option>
+                        </select>
                     </div>
 
                     <div style="padding: 10px;">
                         <label for="change_status">Change Status of the application:</label>
                         <select id="change_status" name="change_status">
+                            <option value="select status" selected disabled>select status</option>
                             <option value="New">New</option>
                             <option value="Current">Current</option>
                             <option value="Final">Final</option>
