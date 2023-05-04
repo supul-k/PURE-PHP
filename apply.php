@@ -139,7 +139,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         <input type="checkbox" name="skill7" id="skill7" value="MongoDB">
 
                         <label for="skill8">Other skills</label>
-                        <input type="checkbox" name="otherskills" id="otherskills" value="Other">
+                        <input type="checkbox" name="other" id="other" value="Other">
                     </fieldset>
 
 

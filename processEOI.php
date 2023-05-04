@@ -79,7 +79,7 @@ function eoi_form_submission()
         $c_plus = isset($_POST['skill5']) ? 'Programming C+,' : '';
         $sql = isset($_POST['skill6']) ? 'SQL,' : '';
         $mongodb = isset($_POST['skill7']) ? 'MongoDB,' : '';
-        $other = isset($_POST['otherskills']) ? $_POST['otherskills'] : '';
+        $other = isset($_POST['other']) ? $_POST['Other'] : '';
 
         // concatenate all the checkbox values into a single string
         $all_skills = $html_css . $javascript . $python . $java . $c_plus . $sql . $mongodb . $other;
