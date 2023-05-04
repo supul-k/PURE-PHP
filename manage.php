@@ -1,12 +1,12 @@
 <?php
 include './menu.inc';
-//require_once 'settings.php';
-//session_start();
+require_once 'settings.php';
+session_start();
 
-// if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-//     header('Location: login.php');
-//     exit();
-// }
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: login.php');
+    exit();
+}
 ?>
 
 <body >
