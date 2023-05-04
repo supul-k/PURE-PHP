@@ -140,14 +140,16 @@ function delete_specified_row()
         if (mysqli_query($conn, $sql)) {
             // Set session variable with success message
             $_SESSION['success_message'] = 'Record Deleted';
+            header("Location: manage.php");
+            exit();
         } else {
             // Set session variable with success message
             $_SESSION['error_message'] = 'Error Occured while deleting try again';
+            header("Location: manage.php");
+            exit();
         }
 
-        // Redirect the user to another page
-        header("Location: manage.php");
-        exit();
+        // Redirect the user to another pag
     }
 }
 
@@ -176,8 +178,8 @@ function submit_change_status()
             // Set session variable with eror message
             $_SESSION['error_message'] = 'Error Occured while updating status';
         } else {
-             // Set session variable with success message
-             $_SESSION['success_message'] = 'Status Updated successfully';
+            // Set session variable with success message
+            $_SESSION['success_message'] = 'Status Updated successfully';
         }
 
         // Redirect the user to another page
