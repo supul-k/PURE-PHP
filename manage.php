@@ -56,16 +56,25 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         </div>
         <div style="display: grid; justify-content: space-evenly;">
             <div style="max-width: 100%; ">
+                <div style=" padding-left: 20px; padding-top: 20px">
+                    <h3 style="font-family: Arial; color: #333; margin: 0;">
+                        Change the status delete row
+                    </h3>
+                </div>
                 <form method="post" style="display: flex; padding: 10px;" action="processEOI.php" id="change_status_form" novalidate="novalidate">
                     <div style="padding: 10px;">
-                        <label for="reference">Reference Number:</label>
-                        <select id="reference" name="reference">
+                        <!-- <label for="reference">Reference Number:</label> -->
+                        <!-- <select id="reference" name="reference">
                             <option value="select reference number" selected disabled>select reference number</option>
                             <option value="011AA">Ref: 011AA</option>
                             <option value="012BB">Ref: 012BB</option>
                             <option value="013CC">Ref: 013CC</option>
                             <option value="014DD">Ref: 014DD</option>
-                        </select>
+                        </select> -->
+                        <div id="firstname" style="padding: 10px;">
+                            <label for="firstname">Reference Number</label><span id="fnameError" class="error"></span>
+                            <input type="text" id="reference" name="reference" placeholder="Reference Number" maxlength="30" size="30">
+                        </div>
                     </div>
 
                     <div style="padding: 10px;">
@@ -106,6 +115,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             <th>postcode</th>
             <th>email</th>
             <th>phone</th>
+            <th>skills</th>
             <th>other_skills</th>
             <th>status</th>
         </tr>
@@ -185,6 +195,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             echo '<td>' . $row['postcode'] . '</td>';
             echo '<td>' . $row['email'] . '</td>';
             echo '<td>' . $row['phone'] . '</td>';
+            echo '<td>' . $row['skills'] . '</td>';
             echo '<td>' . $row['other_skills'] . '</td>';
             echo '<td>' . $row['status'] . '</td>';
             echo '</tr>';

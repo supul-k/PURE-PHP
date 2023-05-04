@@ -130,28 +130,28 @@ th {
 
 #reference_btn {
   background-color: #e74c3c;
-  color: #fff;
+  color: rgb(8, 0, 0);
   padding: 10px 20px;
   border-radius: 5px;
 }
 
 #change_status_btn {
   background-color: #1ecbd1;
-  color: #fff;
+  color: rgb(8, 0, 0);
   padding: 10px 20px;
   border-radius: 5px;
 }
 
 #search_record {
   background-color: #d8d514;
-  color: #fff;
+  color: rgb(8, 0, 0);
   padding: 10px 20px;
   border-radius: 5px;
 }
 
 #show_all {
 	background-color: #d8d514;
-	color: #fff;
+	color: rgb(8, 0, 0);
 	padding: 10px 20px;
 	border-radius: 5px;
 
