@@ -32,7 +32,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             <p>You have <span id="timer">10:00</span> to complete the application.</p>
 
             <div class="container">
-                <form method="post" id="regform" action="processEOI.php" novalidate="novalidate">
+                <form method="POST" id="regform" action="processEOI.php" novalidate="novalidate">
                     <div id="refNumber_div">
                         <label for="job-ref">Job Reference Number:</label>
                         <span id="refError" class="error"></span>
@@ -139,7 +139,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         <input type="checkbox" name="skill7" id="skill7" value="MongoDB">
 
                         <label for="skill8">Other skills</label>
-                        <input type="checkbox" name="other" id="other" value="Other">
+                        <input type="checkbox" name="skill8" id="skill8" value="Other">
                     </fieldset>
 
 
@@ -150,7 +150,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
                     </fieldset>
                     <div class="applyButtonContainer">
-                        <input class="submitButton" type="submit" value="submit" id="submit" name="submit_eoi_form">
+                        <input class="submitButton" type="button" onclick="validate()" value="submit" id="submit" name="submit_eoi_form" style="background-color:#3498DB;
+  color: white;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;">
                         <input class="resetFormButton" type="reset" value="Reset Form">
                     </div>
 
