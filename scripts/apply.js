@@ -56,16 +56,6 @@ function validate() {
   } else {
     document.getElementById("emailError").innerHTML = "";
   }
-
-  // Validate dob
-  if (!dob.match(/^\d{4}-\d{2}-\d{2}$/)) {
-    document.getElementById("bodError").innerHTML =
-      "You must enter a valid date in YYYY-MM-DD format";
-    result = false;
-  } else {
-    document.getElementById("bodError").innerHTML = "";
-  }
-
   // Validate phone number
   if (
     !pnumber.match(/^\d{10}$/) ||
@@ -84,7 +74,6 @@ function validate() {
     result = false;
   } else if (document.getElementById("streetaddress").value != "") {
     document.getElementById("streetError").innerHTML = "";
-    result = false;
   }
 
   if (document.getElementById("suburb").value == "") {
@@ -93,7 +82,6 @@ function validate() {
     result = false;
   } else if (document.getElementById("suburb").value != "") {
     document.getElementById("suburbError").innerHTML = "";
-    result = false;
   }
 
   if (document.getElementById("states").value == "none") {
@@ -103,7 +91,6 @@ function validate() {
   }
   if (document.getElementById("states").value != "none") {
     document.getElementById("stateError").innerHTML = "";
-    result = false;
   }
   //Matching the first digit of the postcode according to the selected State
   //VIC = 3 OR 8, NSW = 1 OR 2, QLD = 4 OR 9, NT = 0, WA = 6, SA=5, TAS=7, ACT= 0.
@@ -134,7 +121,7 @@ function validate() {
     result = false;
   }
 
-  var otherSkillsCheckbox = document.getElementById("otherskills").checked;
+  var otherSkillsCheckbox = document.getElementById("skill8").checked;
   var otherSkillsTextarea = document.getElementById("otherskillstext");
   var otherskilltexted = document.getElementById("otherskillstext").value;
 
@@ -144,7 +131,6 @@ function validate() {
     result = false;
   } else if (otherSkillsCheckbox && otherskilltexted != "") {
     document.getElementById("otherskillError").innerHTML = "";
-    result = false;
   }
 
   var male = document.getElementById("male").checked;
@@ -160,7 +146,7 @@ function validate() {
   var programmingc = document.getElementById("skill5").checked;
   var sql = document.getElementById("skill6").checked;
   var mongodb = document.getElementById("skill7").checked;
-  var otherSkills = document.getElementById("otherskills").checked;
+  var otherSkills = document.getElementById("skill8").checked;
 
   if (
     htmlcss ||
@@ -209,9 +195,14 @@ function validate() {
   }
 
   console.log(result);
-  
+
   if (result == true) {
-    regForm.submit();
+    console.log("no error");
+    var myButton = document.getElementById("submit");
+
+    // Change the type attribute to "submit"
+    myButton.setAttribute("type", "submit");
+    document.getElementById("regform").submit();
   }
 }
 
