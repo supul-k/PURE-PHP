@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-  <!-- <script src="scripts/enhancements.js"></script> -->
+  <script src="scripts/enhancements.js"></script>
   <script src="scripts/apply.js"></script>
 
   <title>Home</title>
