@@ -1,10 +1,12 @@
 <?php
 include './menu.inc';
 
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-  header('Location: login.php');
-  exit();
+    header('Location: login.php');
+    exit();
 }
 ?>
 
@@ -18,7 +20,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         <li>
                             <a href="index.php">Apply slide show to the home page</a>
                         </li>
-                        <p>In this example, The  JavaScript code change the image slider by setting a timer to change images every 4 seconds using setInterval(). It also allows manual control of the slider with radio buttons by adding event listeners. The showNextSlide() function gets the next slide index by incrementing the current slide index and then uses the opacity CSS property to hide the current slide and show the next slide. The function also updates the checked state of the radio button corresponding to the next slide. The startImageSlider() function gets the images and radio buttons, sets the current slide index, and calls showNextSlide() to display the first slide.
+                        <p>In this example, The JavaScript code change the image slider by setting a timer to change images every 4 seconds using setInterval(). It also allows manual control of the slider with radio buttons by adding event listeners. The showNextSlide() function gets the next slide index by incrementing the current slide index and then uses the opacity CSS property to hide the current slide and show the next slide. The function also updates the checked state of the radio button corresponding to the next slide. The startImageSlider() function gets the images and radio buttons, sets the current slide index, and calls showNextSlide() to display the first slide.
                         </p>
                     </ul>
                 </li>
