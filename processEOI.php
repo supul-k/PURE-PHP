@@ -43,7 +43,7 @@ function eoi_form_submission()
         $result = mysqli_query($conn, $query);
         $tableExists = mysqli_num_rows($result) > 0;
 
-        if (!$tableExists) {
+        if ($tableExists == false) {
             // Table does not exist, create it
             $sql = "CREATE TABLE eoi (
             EOInumber int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -62,6 +62,13 @@ function eoi_form_submission()
             other_skills varchar(255) DEFAULT NULL,
             status enum('New','Current','Final') DEFAULT NULL
           ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci";
+
+            if (mysqli_query($conn, $sql)) {
+                //table created
+            } else {
+                $_SESSION['error_message'] = ' error occured in table creating';
+                header('Location: registration.php');
+            }
         }
 
         if ($_POST['gender'] == 'male') {
@@ -207,6 +214,13 @@ function register()
             role varchar(10) DEFAULT NULL,
             password VARCHAR(30) NOT NULL
         )";
+
+        if (mysqli_query($conn, $query)) {
+            //table created
+        } else {
+            $_SESSION['error_message'] = ' error occured in table creating';
+            header('Location: registration.php');
+        }
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
