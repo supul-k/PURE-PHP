@@ -206,16 +206,18 @@ function register()
     $result = mysqli_query($conn, $query);
     $tableExists = mysqli_num_rows($result) > 0;
 
-    if (!$tableExists) {
+    if ($tableExists == 0) {
+       
         $sql = "CREATE TABLE registration (
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(30) NOT NULL,
             email VARCHAR(50) NOT NULL,
             role varchar(10) DEFAULT NULL,
             password VARCHAR(30) NOT NULL
-        )";
+        );";
+        
 
-        if (mysqli_query($conn, $query)) {
+        if (mysqli_query($conn, $sql)) {
             //table created
         } else {
             $_SESSION['error_message'] = ' error occured in table creating';
